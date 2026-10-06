@@ -1,0 +1,61 @@
+[project]
+name = "govee"
+version = "0.1.0"
+description = "Package for controlling Govee devices over LAN"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+cli = [
+    "rich>=15.0.0",
+    "typer>=0.25.1",
+]
+
+[project.scripts]
+govee = "govee.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.7"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "govee"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.15.14",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+exclude = [
+    "__init__.py",
+    ".venv/*",
+    ".git",
+    ".github",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".vscode",
+    ".ruff_cache",
+    "build",
+    "dist",
+    "site-packages",
+    "venv",
+    "pyproject.toml",
+]
+line-length = 80
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82"]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "cr-lf"
